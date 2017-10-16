@@ -40,13 +40,15 @@ def newpost():
     if request.method == 'POST':
         title = request.form['title']
         contents = request.form['contents']
+
+        if not title or not contents:
+            return render_template('add.html', 
+        title = "Add a Blog Entry!",
+        error='error!')
         post = Post(title, contents)
         db.session.add(post)
         db.session.commit()
-        return render_template('post.html', 
-            title = "It's a blog!", 
-            post_title = post.title, 
-            content = post.content)
+        return redirect('/blog?post_id={}'.format(post.id))
 
     return render_template('add.html', 
         title = "Add a Blog Entry!")

@@ -3,6 +3,9 @@
 {% block content %}
 
     <h1>Add a Blog Entry!</h1>
+    {% if error %}
+    <h3>Please make sure all fields are completed!</h3>
+    {% endif %}
     <form action="/newpost" method="POST" id="blog">
         <label>
         Title: 
@@ -11,7 +14,6 @@
         <input type="submit">
     </form>
     <br>
-    <textarea rows="4" cols="50" name="contents" form="blog">
-    Enter text here...</textarea>
+    <textarea rows="4" cols="50" name="contents" form="blog"></textarea>
 
 {% endblock %}
